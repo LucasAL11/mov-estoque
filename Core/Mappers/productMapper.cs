@@ -28,5 +28,16 @@ namespace Core.Mappers
                 Description = model.Descricao,
             };
         }
+
+        internal static MovimentacoesModel ToModel(this MovimentacaoDto dto, int IntProd)
+        {
+            return new MovimentacoesModel
+            {
+                IdProduto = IntProd,
+                Quantidade = dto.Quantidade,
+                DataMovimentacao = DateTime.UtcNow,
+                Tipo = dto.Tipo,
+            };
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Data.Interfaces
     {
         Task Save(ProductModel model);
         Task<IEnumerable<ProductModel>> RetrivieAll();
+        Task<bool> RegistrarMovimentacaoAsync(MovimentacoesModel movimentacao);
     }
 }

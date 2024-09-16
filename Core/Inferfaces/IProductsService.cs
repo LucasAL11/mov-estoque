@@ -6,5 +6,7 @@ namespace Core.Inferfaces
     {
         Task SaveProduct(ProductDto dto);
         Task<List<ProductDto>> GetAllProducts();
+        Task<bool> ExcluirMovimentacao(int id);
+        Task<bool> MovimentarEstoque(int id, MovimentacaoDto movimentacao);
     }
 }

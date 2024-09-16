@@ -14,6 +14,11 @@ namespace Data.Repositories
             _connection = connection;
         }
 
+        public Task<bool> RegistrarMovimentacaoAsync(MovimentacoesModel movimentacao)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<ProductModel>> RetrivieAll()
         {
             var query = @"select * from produtos order by Descricao ";

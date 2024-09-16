@@ -14,6 +14,11 @@ namespace Core.Services
             _productsRepositorie = productsRepositorie;
         }
 
+        public Task<bool> ExcluirMovimentacao(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<ProductDto>> GetAllProducts()
         {
 
@@ -27,6 +32,11 @@ namespace Core.Services
             }
 
             return productsList;
+        }
+
+        public async Task<bool> MovimentarEstoque(int idProduto, MovimentacaoDto movimentacao)
+        {
+            return await _productsRepositorie.RegistrarMovimentacaoAsync(movimentacao.ToModel(idProduto));
         }
 
         public async Task SaveProduct(ProductDto dto)

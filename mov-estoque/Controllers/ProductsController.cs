@@ -41,5 +41,25 @@ namespace mov_estoque.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("{id}/movimentar")]
+        public async Task<IActionResult> MovimentarEstoque(int id, [FromBody] MovimentacaoDto movimentacao)
+        {
+            var atualizado = await _productsService.MovimentarEstoque(id, movimentacao);
+            if (atualizado)
+                return Ok("Movimentação realizada com sucesso");
+            return BadRequest("Erro ao realizar movimentação");
+        }
+
+        [HttpDelete("movimentacoes/{id}")]
+        public async Task<IActionResult> ExcluirMovimentacao(int id)
+        {
+            var sucesso = await _productsService.ExcluirMovimentacao(id);
+            if (sucesso)
+            {
+                return Ok("Movimentação excluída com sucesso.");
+            }
+            return BadRequest("Não foi possível excluir a movimentação. Verifique se é a última movimentação.");
+        }
     }
 }
