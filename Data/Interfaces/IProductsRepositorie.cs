@@ -4,8 +4,9 @@ namespace Data.Interfaces
 {
     public interface IProductsRepositorie
     {
-        Task Save(ProductModel model);
-        Task<IEnumerable<ProductModel>> RetrivieAll();
-        Task<bool> RegistrarMovimentacaoAsync(MovimentacoesModel movimentacao);
+        Task InserirProdutoAsync(ProductModel model);
+        Task<IEnumerable<ProductModel>> ObterTodosAsync();
+        Task<bool> RegistrarMovimentacaoAsync(MovimentacoesModel movimentacao)
+        Task<bool> ExcluirUltimaMovimentacaoAsync(int idMovimentacao);
     }
 }

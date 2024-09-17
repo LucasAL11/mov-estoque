@@ -22,7 +22,7 @@ namespace Core.Services
         public async Task<List<ProductDto>> GetAllProducts()
         {
 
-            var products = await _productsRepositorie.RetrivieAll();
+            var products = await _productsRepositorie.ObterTodosAsync();
 
             var productsList = new List<ProductDto>();
 
@@ -41,7 +41,7 @@ namespace Core.Services
 
         public async Task SaveProduct(ProductDto dto)
         {
-            await _productsRepositorie.Save(dto.ToModel());
+            await _productsRepositorie.InserirProdutoAsync(dto.ToModel());
         }
     }
 }
