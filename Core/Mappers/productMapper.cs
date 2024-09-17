@@ -35,7 +35,7 @@ namespace Core.Mappers
             {
                 IdProduto = IntProd,
                 Quantidade = dto.Quantidade,
-                DataMovimentacao = DateTime.UtcNow,
+                Data = dto.Data,
                 Tipo = dto.Tipo,
             };
         }

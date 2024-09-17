@@ -22,7 +22,7 @@ builder.Services.AddSingleton<IDbConnection>(sp =>
 
 
 builder.Services.AddSingleton<IProductsService, ProductsService>();
-builder.Services.AddTransient<IProductsRepositorie, ProductsRepositorie>();
+builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
 
 var app = builder.Build();
 

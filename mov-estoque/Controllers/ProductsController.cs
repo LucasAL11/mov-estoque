@@ -48,6 +48,7 @@ namespace mov_estoque.Controllers
             var atualizado = await _productsService.MovimentarEstoque(id, movimentacao);
             if (atualizado)
                 return Ok("Movimentação realizada com sucesso");
+            
             return BadRequest("Erro ao realizar movimentação");
         }
 

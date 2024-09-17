@@ -7,6 +7,6 @@
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataMovimentacao { get; set; }
-        public decimal Saldo { get; set; }
+        public int Saldo { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace Core.Services
 {
     public class ProductsService : IProductsService
     {
-        private readonly IProductsRepositorie _productsRepositorie;
+        private readonly IProductsRepository _productsRepositorie;
 
-        public ProductsService(IProductsRepositorie productsRepositorie)
+        public ProductsService(IProductsRepository productsRepositorie)
         {
             _productsRepositorie = productsRepositorie;
         }
@@ -36,7 +36,27 @@ namespace Core.Services
 
         public async Task<bool> MovimentarEstoque(int idProduto, MovimentacaoDto movimentacao)
         {
-            return await _productsRepositorie.RegistrarMovimentacaoAsync(movimentacao.ToModel(idProduto));
+
+            var produto = await _productsRepositorie.ObterProdutoPorIdAsync(idProduto);
+
+            if (produto == null)
+            {
+                return false;
+            }
+
+            var novoSaldo = _productsRepositorie.CorrigirSaldo(movimentacao.Tipo, produto.Saldo, movimentacao.Quantidade);
+
+            if (novoSaldo < 0)
+                return false;
+
+            var estoqueMovimentado = await _productsRepositorie.RegistrarMovimentacaoAsync(movimentacao.ToModel(idProduto));
+
+            if (!estoqueMovimentado)
+                return false;
+
+            await _productsRepositorie.AtualizarSaldoAsync(novoSaldo, idProduto);
+
+            return true;
         }
 
         public async Task SaveProduct(ProductDto dto)
